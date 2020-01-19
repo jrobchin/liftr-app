@@ -1,52 +1,46 @@
 import Expo from 'expo';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-// const io = require('socket.io-client');
+import { StyleSheet, Text, View, Button } from 'react-native';
+const io = require('socket.io-client');
 
-// Replace this URL with your own, if you want to run the backend locally!
-// const SocketEndpoint = 'wss://echo.websocket.org/';
+import { YellowBox } from 'react-native'
+YellowBox.ignoreWarnings([
+  'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
+])
+
+const SOCKET_URL = 'http://liftr.ngrok.io/';
 
 export default class App extends React.Component {
-//   state = {
-//     isConnected: false,
-//     data: null,
-//   };
-//   componentDidMount() {
-//     // const socket = io(SocketEndpoint, {
-//     //     transports: ['websocket'] // you need to explicitly tell it to use websockets
-//     // });
+  state = {
+    connected: false
+  }
 
-//     // socket.on('connect', () => {
-//     //   this.setState({ isConnected: true });
-//     // });
+  constructor(props) {
+    super(props)
+  }
 
-//     // console.log("connected");
+  connect = () => {
+    this.socket = io(SOCKET_URL, {
+      transports: ['websocket']
+    });
 
-//     // socket.on('ping', data => {
-//     //   this.setState(data);
-//     //   console.log(data);
-//     // });
-
-//     // var ws = new WebSocket(SocketEndpoint);
-//     //    ws.onopen = () => {
-//     //     this.setState({ isConnected: true });
-//     //     ws.send("socket open");
-//     //    };
-//     //    ws.onclose = function(evt) {
-//     //        console.log("socket closed");
-//     //    };
-//     //    ws.onmessage = function(evt) {
-//     //        console.log(evt.data);
-//     //    };
-//   }
+    this.socket.on('connect', () => {
+      this.setState({
+        connected: true
+      })
+    })
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Text>
-            he
+            {this.state.connected ? 'true' : 'false'}
         </Text>
-
+        <Button
+          title='connect'
+          onPress={this.connect}
+        />
       </View>
     );
   }
