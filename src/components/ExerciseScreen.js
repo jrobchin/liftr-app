@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {Dimensions} from 'react-native';
 import { ScrollView,SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import io from 'socket.io-client';
-import Carousel from 'react-native-snap-carousel';
 
 const {width : viewportWidth, height: viewportHeight} = Dimensions.get('window');
 
@@ -43,10 +42,22 @@ export default class ExerciseScreen extends Component {
   }
 
   onStartExercise(exercise) {
-      console.log(exercise);
+      console.log(this.socket);
+
       // this.socket.emit('select_exercise', {'exercise':exercise});
+      this.socket.on('make_critique', (data) => {
+        this.imageSource = data['image'];
+        this.caption = data['caption'];
+      });
 
   };
+
+
+  componentDidMount() {
+    this.socket = this.props.navigation.getParam('socket');
+
+  }
+
 
     render() {
       return (
@@ -77,11 +88,11 @@ export default class ExerciseScreen extends Component {
           <ScrollView style={styles.review}>
             <Image
               style={styles.reviewImage}
-              source={require('../assets/images/shoulderpress.jpg')}
+              source={this.imageSource}
             />
 
             <Text style={styles.reviewText}>
-            Caption
+            {this.caption}
             </Text>
 
           </ScrollView>

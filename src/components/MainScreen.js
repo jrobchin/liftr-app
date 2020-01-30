@@ -5,6 +5,7 @@ import { ScrollView,SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Imag
 import io from 'socket.io-client';
 import Carousel from 'react-native-snap-carousel';
 
+
 const {width : viewportWidth, height: viewportHeight} = Dimensions.get('window');
 
 // const socket = require('../services/socket');
@@ -37,19 +38,18 @@ export default class App extends React.Component {
       date: '',
       carouselItems: [
             {
-                title:"shoulderpress.jpg",
+                title:require(`../assets/images/shoulderpress.jpg`),
                 function: "shoulder_press"
             },
             {
-                title:"bicepcurl.jpg",
+                title:require(`../assets/images/bicepcurl.jpg`),
                 function: "bicep_curl",
             },
             {
-                title:"squats.jpg",
+                title:require(`../assets/images/squats.jpg`),
                 function: "squat"
             }
             ],
-
     };
 
     this.onSelectExercise = this.onSelectExercise.bind(this);
@@ -58,7 +58,6 @@ export default class App extends React.Component {
   }
 
   _renderItem({item,index}){
-      imgsrc=(`../assets/images/${item.title}`);
         return (
           <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center'}}>
           <TouchableOpacity
@@ -66,7 +65,7 @@ export default class App extends React.Component {
             activeOpacity = { .7 }
             onPress={() => this.onSelectExercise(item.function)} 
           >
-            <Image source={require(`../assets/images/squats.jpg`)} style={styles.images}/>
+            <Image source={item.title} style={styles.images}/>
 
           </TouchableOpacity>
           </View>
@@ -77,7 +76,9 @@ export default class App extends React.Component {
   onSelectExercise(exercise) {
       console.log(exercise);
       this.socket.emit('select_exercise', {'exercise':exercise});
-      this.props.navigation.navigate('Exercise'); 
+      this.props.navigation.navigate('Exercise'),{
+              socket: this.socket,
+        }; 
 
   };
 
