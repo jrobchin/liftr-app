@@ -119,7 +119,7 @@ export default class HomeScreen extends Component {
             <TouchableOpacity
               style={styles.button}
               activeOpacity = { .7 }
-              onPress={()=>this.props.navigation.navigate('About')} 
+              onPress={()=>this.props.navigation.navigate('Main')} 
             >
             <Text style={styles.buttonText}> Start My Journey </Text>
             </TouchableOpacity>

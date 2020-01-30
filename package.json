@@ -18,6 +18,7 @@
     "react-native-gesture-handler": "^1.5.3",
     "react-native-masked-view": "^0.2.0",
     "react-native-safe-area-context": "^0.6.2",
+    "react-native-snap-carousel": "^3.8.4",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.13",

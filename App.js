@@ -5,9 +5,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 
 import HomeScreen from './src/components/HomeScreen';
-import AboutScreen from './src/components/AboutScreen';
+import LoginScreen from './src/components/LoginScreen';
 import MainScreen from './src/components/MainScreen';
+import SessionScreen from './src/components/SessionScreen';
 
+import { YellowBox } from 'react-native'
+YellowBox.ignoreWarnings([
+  'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
+])
 
 export default class App extends React.Component {
   render() {
@@ -22,14 +27,20 @@ const AppNavigator = createStackNavigator({
         headerShown: false,
       }
   },
-  About: {
-    screen: AboutScreen,
+  Login: {
+    screen: LoginScreen,
     navigationOptions: {
         headerShown: false,
       }
   },
   Main: {
     screen: MainScreen,
+    navigationOptions: {
+        headerShown: false,
+    }
+  },
+  Session: {
+    screen: SessionScreen,
     navigationOptions: {
         headerShown: false,
     }
