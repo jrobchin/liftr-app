@@ -1,7 +1,7 @@
 import Expo from 'expo';
 import React, { Component } from 'react';
 import {Dimensions} from 'react-native';
-import { ScrollView,SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { ScrollView,SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import io from 'socket.io-client';
 
 const {width : viewportWidth, height: viewportHeight} = Dimensions.get('window');
@@ -29,33 +29,51 @@ function postReq() {
 
 export default class ExerciseScreen extends Component {
 
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
-      //defauilt value of the date time
-      date: '',
-
+      critiques: [
+        {imageURI: 'https://facebook.github.io/react-native/img/tiny_logo.png', caption: 'test one'}
+      ]
     };
 
     this.onStartExercise = this.onStartExercise.bind(this);
-
   }
 
-  onStartExercise(exercise) {
-      console.log(this.socket);
-
-      // this.socket.emit('select_exercise', {'exercise':exercise});
-      this.socket.on('make_critique', (data) => {
-        this.imageSource = data['image'];
-        this.caption = data['caption'];
+  onStartExercise() {
+    this.socket.emit('start_exercise', {'reps':10});
+    this.socket.on('make_critique', (data) => {
+      console.log('make critique event')
+      this.setState({
+        critiques: [
+          {
+            imageURI: 'http://' + data['image'],
+            caption: data['caption']
+          },
+          ...this.state.critiques
+        ]
       });
-
+    });
   };
 
 
   componentDidMount() {
     this.socket = this.props.navigation.getParam('socket');
+  }
 
+  _renderCritiques({item,index}) {
+    return (
+      <View key={index}>
+        <Image
+          style={styles.reviewImage}
+          source={{uri: item.imageURI}}
+        />
+
+        <Text style={styles.reviewText}>
+          {item.caption}
+        </Text>
+      </View>
+    )
   }
 
 
@@ -77,7 +95,7 @@ export default class ExerciseScreen extends Component {
             <TouchableOpacity
               style={styles.button}
               activeOpacity = { .7 }
-              onPress={()=>this.onStartExercise("done")} 
+              onPress={this.onStartExercise} 
             >
             <Text style={styles.buttonText}> Start </Text>
             </TouchableOpacity>
@@ -85,17 +103,7 @@ export default class ExerciseScreen extends Component {
           </View>
 
 
-          <ScrollView style={styles.review}>
-            <Image
-              style={styles.reviewImage}
-              source={this.imageSource}
-            />
-
-            <Text style={styles.reviewText}>
-            {this.caption}
-            </Text>
-
-          </ScrollView>
+          <FlatList style={styles.review} data={this.state.critiques} renderItem={this._renderCritiques} />
 
       </View>
 

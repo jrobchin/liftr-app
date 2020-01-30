@@ -94,11 +94,11 @@ export default class SessionScreen extends Component {
     getReply(data) {
       console.log('Reply from server: ' + data)
       data = JSON.parse(data)
-      // if (data.success == true) {
+      if (data.success == true) {
         this.props.navigation.navigate('Main',{
               socket: this.socket,
         });
-      // }
+      }
     }
 
     componentDidMount() {

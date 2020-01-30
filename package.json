@@ -34,5 +34,8 @@
       "./assets/fonts/"
     ]
   },
-  "private": true
+  "private": true,
+  "metro": {
+    "blacklistRE": "\\.git"
+  }
 }

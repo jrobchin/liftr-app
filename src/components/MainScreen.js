@@ -8,6 +8,10 @@ import Carousel from 'react-native-snap-carousel';
 
 const {width : viewportWidth, height: viewportHeight} = Dimensions.get('window');
 
+const sp_image = require(`../assets/images/shoulderpress.jpg`);
+const bc_image = require(`../assets/images/bicepcurl.jpg`);
+const sq_image = require(`../assets/images/squats.jpg`);
+
 // const socket = require('../services/socket');
 
 // Replace this URL with your own, if you want to run the backend locally!
@@ -38,15 +42,15 @@ export default class App extends React.Component {
       date: '',
       carouselItems: [
             {
-                title:require(`../assets/images/shoulderpress.jpg`),
+                title: sp_image,
                 function: "shoulder_press"
             },
             {
-                title:require(`../assets/images/bicepcurl.jpg`),
+                title: bc_image,
                 function: "bicep_curl",
             },
             {
-                title:require(`../assets/images/squats.jpg`),
+                title: sq_image,
                 function: "squat"
             }
             ],
@@ -74,12 +78,10 @@ export default class App extends React.Component {
 
 
   onSelectExercise(exercise) {
-      console.log(exercise);
       this.socket.emit('select_exercise', {'exercise':exercise});
-      this.props.navigation.navigate('Exercise'),{
-              socket: this.socket,
-        }; 
-
+      this.props.navigation.navigate('Exercise', {
+        socket: this.socket
+      }); 
   };
 
 
