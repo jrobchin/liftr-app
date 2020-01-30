@@ -58,6 +58,7 @@ export default class App extends React.Component {
   }
 
   _renderItem({item,index}){
+      imgsrc=(`../assets/images/${item.title}`);
         return (
           <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center'}}>
           <TouchableOpacity
@@ -65,7 +66,7 @@ export default class App extends React.Component {
             activeOpacity = { .7 }
             onPress={() => this.onSelectExercise(item.function)} 
           >
-            <Image source={require('../assets/images/shoulderpress.jpg')} style={styles.images}/>
+            <Image source={require(`../assets/images/squats.jpg`)} style={styles.images}/>
 
           </TouchableOpacity>
           </View>
@@ -76,6 +77,8 @@ export default class App extends React.Component {
   onSelectExercise(exercise) {
       console.log(exercise);
       this.socket.emit('select_exercise', {'exercise':exercise});
+      this.props.navigation.navigate('Exercise'); 
+
   };
 
 

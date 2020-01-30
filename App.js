@@ -8,6 +8,8 @@ import HomeScreen from './src/components/HomeScreen';
 import LoginScreen from './src/components/LoginScreen';
 import MainScreen from './src/components/MainScreen';
 import SessionScreen from './src/components/SessionScreen';
+import ExerciseScreen from './src/components/ExerciseScreen';
+
 
 import { YellowBox } from 'react-native'
 YellowBox.ignoreWarnings([
@@ -41,6 +43,12 @@ const AppNavigator = createStackNavigator({
   },
   Session: {
     screen: SessionScreen,
+    navigationOptions: {
+        headerShown: false,
+    }
+  },
+  Exercise: {
+    screen: ExerciseScreen,
     navigationOptions: {
         headerShown: false,
     }
