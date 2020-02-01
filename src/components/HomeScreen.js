@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     // fontFamily: 'HelveticaNeueBold'
   },
   bigRed: {
-    color: 'red',
+    color: '#D00000',
     fontWeight: 'bold',
     fontSize:43,
     marginBottom: 13,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize:14,
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: '#D00000',
     alignItems:'center',
     padding: 18,
     paddingHorizontal: 80,
@@ -108,8 +108,8 @@ export default class HomeScreen extends Component {
 
             <View style={{flex:2, alignItems: 'left', justifyContent: 'center', flexDirection: 'column', paddingHorizontal: 13}}>
 
-              <Text style={styles.infoTitle}>Customized Workouts</Text>
-              <Text style={styles.infoText}>Based on your goals and current fitness level, we help create a workout plan to deliver optimal results.</Text>
+              <Text style={styles.infoTitle}>Find a Gym Buddy</Text>
+              <Text style={styles.infoText}>Join a workout with a friend to make sure you get the gym buddy experience at home too.</Text>
 
             </View>
             

@@ -33,8 +33,13 @@ export default class ExerciseScreen extends Component {
     super(props);
     this.state = {
       critiques: [
-        {imageURI: 'https://facebook.github.io/react-native/img/tiny_logo.png', caption: 'test one'}
-      ]
+        // {imageURI: 'https://facebook.github.io/react-native/img/tiny_logo.png', caption: 'test one'},
+        // {imageURI: 'https://facebook.github.io/react-native/img/tiny_logo.png', caption: 'test one'},
+        // {imageURI: 'https://facebook.github.io/react-native/img/tiny_logo.png', caption: 'test one'}
+
+      ],
+      reps: 0
+
     };
 
     this.onStartExercise = this.onStartExercise.bind(this);
@@ -52,6 +57,12 @@ export default class ExerciseScreen extends Component {
           },
           ...this.state.critiques
         ]
+      });
+    });
+    this.socket.on('update_reps', (data) => {
+      console.log('make rep event')
+      this.setState({
+        reps: data['reps']
       });
     });
   };
@@ -80,14 +91,14 @@ export default class ExerciseScreen extends Component {
     render() {
       return (
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30, paddingVertical: 60 }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: '', padding: 30, paddingVertical: 60 }}>
 
 
-        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
 
             <Text style={styles.repText}>
 
-              REPS
+              REPS: {this.state.reps}
 
             </Text>
 
@@ -102,8 +113,11 @@ export default class ExerciseScreen extends Component {
 
           </View>
 
+          <View style={{ alignItems: 'center', height: 50 }}>
+            
+            <FlatList style={styles.review} data={this.state.critiques} renderItem={this._renderCritiques} />
 
-          <FlatList style={styles.review} data={this.state.critiques} renderItem={this._renderCritiques} />
+          </View>
 
       </View>
 
@@ -136,14 +150,18 @@ const styles = StyleSheet.create({
   reviewImage: {
     width: 250,
     height: 250,
-    resizeMode: 'stretch'
+    resizeMode: 'stretch',
+    marginBottom: 25,
+    borderRadius: 25
   },
   review: {
-    marginBottom: -150,
-    position: 'relative'
+    marginBottom: 10,
+    position: 'absolute',
+    height: 365
   },
   reviewText: {
     fontSize: 20,
-    marginTop: 50
+    marginTop: 1,
+    marginBottom: 25
   }
 });
