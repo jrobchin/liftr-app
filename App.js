@@ -9,6 +9,7 @@ import LoginScreen from './src/components/LoginScreen';
 import MainScreen from './src/components/MainScreen';
 import SessionScreen from './src/components/SessionScreen';
 import ExerciseScreen from './src/components/ExerciseScreen';
+import results from './src/components/results';
 
 
 import { YellowBox } from 'react-native'
@@ -50,6 +51,12 @@ const AppNavigator = createStackNavigator({
   },
   Exercise: {
     screen: ExerciseScreen,
+    navigationOptions: {
+        headerShown: false,
+    }
+  },
+  result: {
+    screen: results,
     navigationOptions: {
         headerShown: false,
     }
