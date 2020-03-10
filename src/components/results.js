@@ -39,10 +39,12 @@ export default class result extends Component {
 
     state = {
       modalVisible: false,
+      modalCaption: "caption" ,
+      // modal_Image: " ",
     };
 
-    setModalVisible(visible) {
-      this.setState({modalVisible: visible});
+    setModalVisible(visible,caption,imageURI) {
+      this.setState({modalVisible: visible, modalCaption: caption, modalImage: imageURI});
     }
 
 
@@ -64,10 +66,10 @@ export default class result extends Component {
             <View>
 
               <Text style={styles.resultTitle}>Critique</Text>
-              <Text style={styles.resultText}>Ensure you don't overextend your elbows.</Text>
+              <Text style={styles.resultText}>this.state.modalCaption</Text>
               <Image
                 style={styles.reviewImage}
-                source={require('../assets/images/liftrLogo2.png')}
+                source={{uri: this.state.modalImage}}
               />
 
 
