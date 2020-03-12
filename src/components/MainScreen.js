@@ -109,13 +109,24 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <View style={{ flex: 1, alignItems: 'Center', justifyContent: 'Center', padding: 0, paddingVertical: viewportHeight/14 }}>
+      <View style={{ flex: 1, alignItems: 'Center', justifyContent: 'Center', padding: 0, paddingVertical: viewportHeight/21 }}>
 
-        <View style={{ flex: 1 }}>
-          <Text style={styles.grayedOut}> {this.state.date.toUpperCase()} </Text>
-          <Text style={styles.bigRed}>LIFTR <Text style={styles.bigBlue} >Hub </Text></Text>
+        <View style={{ flex: 1}}>
+          
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flex:1}}>
+              <Text style={styles.grayedOut}> {this.state.date.toUpperCase()} </Text>
+              <Text style={styles.bigRed}>LIFTR <Text style={styles.bigBlue} >Hub </Text></Text>
+            </View>
+            <View style={{flexDirection:'column'}}>
+              <Image
+                  style={{alignSelf: 'flex-end', width: viewportHeight/7.4, height: viewportHeight/7.4}}
+                  source={require('../assets/images/profile.png')}
+              />
+            </View>
+          </View>
 
-          <ScrollView>
+          <ScrollView style={{marginTop: 30}}>
           
             <Carousel
               layout = {'default'}
@@ -128,6 +139,19 @@ export default class App extends React.Component {
               loop={true}
 
             />
+
+            <View style={{marginTop: 40, flexDirection: 'row', justifyContent: 'center'}}>
+
+              <Image
+                style={{width: 180, height: 180}}
+                source={require('../assets/images/planner.png')}
+              />
+              <Image
+                style={{width: 180, height: 180}}
+                source={require('../assets/images/buddy.png')}
+              />
+
+            </View>
 
           </ScrollView>
 
@@ -144,14 +168,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize:34,
     marginBottom: 30,
-    marginLeft: 20
+    marginLeft: 20,
+    marginTop: -20
   },
   grayedOut: {
     color: 'rgba(0,0,0,0.4)',
     fontSize:13,
-    marginBottom: 7,
-    marginLeft: 20
-  },
+    marginBottom: 20,
+    marginLeft: 20,
+    paddingTop: 15
+  },  
   smallText: {
     color: 'black',
     fontWeight: 'bold',
