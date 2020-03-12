@@ -65,7 +65,7 @@ export default class LoginScreen extends Component {
       // console.log('Credentials', `${username} + ${password}`);
 
       // if ((username == "Harsh") && (password == "Patel")) {
-        this.props.navigation.navigate('Main');
+        this.props.navigation.navigate('Session');
         // console.log("good");
       
     }
