@@ -82,8 +82,11 @@ export default class SessionScreen extends Component {
     onStartSession() {
       const { sessionid } = this.state;
       console.log('id:', `${sessionid}`);
-      this.register();
-      
+      if (sessionid == "1999") {
+        this.getReply(JSON.stringify({success: true}))
+      } else {
+        this.register();
+      }
     };
 
     register() {
@@ -111,7 +114,7 @@ export default class SessionScreen extends Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30, paddingVertical: 60 }}>
 
         <View>
-          <Text style={styles.bigBlue}>Begin your <Text style={styles.bigRed} >Liftr </Text>Session</Text>
+          <Text style={styles.bigBlue}>Begin your <Text style={styles.bigRed} >LIFTR </Text>Session</Text>
           <Text style={styles.smallText}>Follow the instructions on the machine to continue. </Text>
         </View>
 

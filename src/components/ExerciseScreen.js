@@ -204,7 +204,7 @@ export default class ExerciseScreen extends Component {
 
         <View style={{alignItems: 'center', justifyContent: 'center'}}>
 
-            <Text style={styles.bigRed}>Liftr<Text style={styles.bigBlack}>train</Text></Text>
+            <Text style={styles.bigRed}>LIFTR<Text style={styles.bigBlack}>train</Text></Text>
 
             <Text style={styles.repText}>
 

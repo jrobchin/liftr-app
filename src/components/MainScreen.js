@@ -116,7 +116,7 @@ export default class App extends React.Component {
           <View style={{flexDirection: 'row'}}>
             <View style={{flex:1}}>
               <Text style={styles.grayedOut}> {this.state.date.toUpperCase()} </Text>
-              <Text style={styles.bigRed}>LIFTR <Text style={styles.bigBlue} >Hub </Text></Text>
+              <Text style={styles.bigRed}>LIFTR <Text style={styles.bigBlue}>me </Text></Text>
             </View>
             <View style={{flexDirection:'column'}}>
               <Image

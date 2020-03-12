@@ -83,7 +83,7 @@ export default class result extends Component {
           </View>
         </Modal>
 
-        <Text style={styles.bigRed}>Liftr <Text style={styles.bigBlack}>Train</Text></Text>
+        <Text style={styles.bigRed}>LIFTR <Text style={styles.bigBlack}>Train</Text></Text>
 
         <ScrollView>
         <TouchableHighlight

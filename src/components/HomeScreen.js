@@ -78,8 +78,8 @@ export default class HomeScreen extends Component {
 
             <View style={{flex:2, alignItems: 'left', justifyContent: 'center', flexDirection: 'column', paddingHorizontal: 13}}>
 
-              <Text style={styles.infoTitle}>Voice Feedback</Text>
-              <Text style={styles.infoText}>Using AI we validate whether you perform each exercise correctly and provide feedback immediately.</Text>
+              <Text style={styles.infoTitle}>Instant Feedback</Text>
+              <Text style={styles.infoText}>Using AI we validate how you perform each exercise and provide feedback immediately.</Text>
 
             </View>
 
